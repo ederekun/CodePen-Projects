@@ -1,0 +1,36 @@
+function convertToRoman(num) {
+  const romanArr = [['I', 1], ['V', 5], ['X', 10], ['L', 50], ['C', 100], ['D', 500], ['M', 1000]];
+  let resultRoman = [];
+
+  do {
+    for (let i = romanArr.length - 1; i >= 0; i--) {
+      let currVal = romanArr[i][1];
+      if (currVal <= num) {
+        // Odd indexes consists of 1* values, 5* if even
+        if (!(i % 2)) {
+          resultRoman.push(romanArr[i][0]);
+          // Account for 1* values modifying idx+2 and idx+1 values
+          if (currVal * 9 <= num) {
+            resultRoman.push(romanArr[i + 2][0]);
+            currVal *= 9;
+          } else if (currVal * 4 <= num) {
+            resultRoman.push(romanArr[i + 1][0]);
+            currVal *= 4;
+          }
+        } else {
+          // Skip if idx-1 1* value is required to precede idx+1 value
+          if (romanArr[i - 1][1] * 9 <= num)
+            continue;
+          resultRoman.push(romanArr[i][0]);
+        }
+        num -= currVal;
+        console.log(num);
+        break;
+      }
+    }
+  } while (num > 0);
+
+  return resultRoman.join('');
+}
+
+console.log(convertToRoman(1009));
