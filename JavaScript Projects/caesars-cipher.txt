@@ -1,0 +1,29 @@
+function rot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let newStr = [];
+
+  for (let i = 0; i < str.length; i++) {
+    let match = false;
+    let j = 0;
+
+    for (; j < alphabet.length; j++) {
+      if (str[i] == alphabet[j]) {
+        match = true;
+        break;
+      }
+    }
+
+    if (match) {
+      let j13 = j + 13;
+      if (j13 >= alphabet.length)
+        j13 -= alphabet.length;
+      newStr.push(alphabet[j13]);
+    } else {
+      newStr.push(str[i]);
+    }
+  }
+
+  return newStr.join('');
+}
+
+console.log(rot13("SERR PBQR PNZC"));
