@@ -1,2 +1,2 @@
-# CodePen-Projects
-A repository of my fCC projects imported from CodePen
+# fCC-Projects
+A repository of my fCC projects
