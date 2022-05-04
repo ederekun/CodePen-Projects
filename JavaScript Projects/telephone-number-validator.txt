@@ -1,0 +1,14 @@
+function telephoneCheck(str) {
+  const acceptedFormats = [
+    // dash/space format with area code check
+    /^1?\s*\d{3}(-|\s)\d{3}(-|\s)\d{4}$/, 
+    // parenthesis, space, dash format with area code check
+    /^1?\s*\(\d{3}\)\s?\d{3}-\d{4}$/, 
+    // digits only format
+    /^\d{10}$/
+  ];
+
+  return !acceptedFormats.every(x => !x.test(str));
+}
+
+console.log(telephoneCheck("555 555 5555"));
